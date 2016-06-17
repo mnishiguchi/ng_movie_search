@@ -1,0 +1,14 @@
+/* styles in src/style directory are applied to the whole page */
+h1 {
+  padding: 20px;
+}
+.movie-poster {
+  padding: 20px 0;
+  height: auto;
+  width: 300px;
+}
+.no-info {
+  padding-top: 10px;
+  margin-left: 10px;
+  font-style: italic;
+}

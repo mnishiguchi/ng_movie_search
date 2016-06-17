@@ -1,0 +1,56 @@
+<div class="card card-block">
+  <!--
+    Search bar
+    - Accept a search key.
+    - Trigger searching by the blur event, rather than by button click.
+    - The search button is merely a decorator.
+  -->
+  <form novalidate>
+    <input type="text"
+      ng-model="movieSearch.key"
+      ng-model-options="{
+        updateOn: 'default blur',
+        debounce: {
+          default: 700,
+          blur: 0
+        }
+      }"
+      ng-change="movieSearch.getData()"
+      class="form-control"
+      placeholder="Enter movie name">
+  </form>
+
+  <!-- Loading indicator -->
+  <p
+    ng-if="movieSearch.loading">
+    <i class="fa fa-spinner fa-spin"></i>
+    Loading...
+  </p>
+
+  <!--
+    Movie component
+    - Pass into the info attribute a movieSearch.info object to be displayed.
+  -->
+  <movie info="movieSearch.info"></movie>
+
+  <!--
+    Clear button
+    - Displayed when search key exists.
+    - Call movieSearch.clearData() when clicked.
+  -->
+  <button type="button"
+    ng-show="movieSearch.key !== ''"
+    ng-click="movieSearch.clearData() ; jumpTo( 'top' );"
+    anchor-hash-link>
+    Clear data
+  </button>
+
+  <hr>
+
+  <!-- Display JSON data -->
+  <section class="alert alert-warning">
+    <h4>Movie data</h4>
+    <pre>{{ movieSearch.info | json }}</pre>
+  </section>
+
+</div><!-- end card -->

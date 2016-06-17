@@ -1,0 +1,80 @@
+<!--
+  Movie
+  - View template for the movieSearch directive.
+  - Show movie info if data is available.
+-->
+
+<p ng-hide="movie.isDataAvailable" class="no-info">
+  No information to display.
+</p>
+
+
+<div ng-show="movie.isDataAvailable">
+
+  <a
+    href="http://imdb.com/title/{{ movie.info.imdbID }}"
+    target="_blank">
+    <img
+      ng-src="{{ movie.getPosterUrl() }}"
+      class="movie-poster">
+  </a>
+
+  <h2
+    class="movie-title"
+    style="margin-top: 20px;" >
+    {{ movie.info.Title }}
+
+    <small>
+      ({{ movie.info.Year }})
+    </small>
+
+    <!-- Link buttons -->
+    <a
+      ng-href="{{ movie.getYouTubeUrl() }}"
+      target="_blank" >
+      <i class="fa fa-youtube"></i>
+    </a>
+
+    <a
+      ng-href="{{ movie.getAmazonUrl() }}"
+      target="_blank" >
+      <i class="fa fa-amazon"></i>
+    </a>
+  </h2>
+
+  <p>
+    <strong>Released on:</strong>
+    {{ movie.info.Released }} ({{ movie.info.Runtime }})
+  </p>
+
+  <p>
+    {{ movie.info.Plot }}
+  </p>
+
+  <!-- Description list -->
+  <div class="container">
+    <dl class="dl-horizontal ">
+      <dt class="col-sm-3">
+        <span class="label label-primary">Directors</span>
+      </dt>
+      <dd class="col-sm-9">
+        {{ movie.info.Director }}
+      </dd>
+
+      <dt class="col-sm-3">
+        <span class="label label-primary">Actors</span>
+      </dt>
+      <dd class="col-sm-9">
+        {{ movie.info.Actors }}
+      </dd>
+
+      <dt class="col-sm-3">
+        <span class="label label-primary">Genre</span>
+      </dt>
+      <dd class="col-sm-9">
+        {{ movie.info.Genre }}
+      </dd>
+    </dl>
+  </div>
+
+</div>
